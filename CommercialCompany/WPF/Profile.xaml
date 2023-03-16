@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CommercialCompany.WPF"
         mc:Ignorable="d"
-        Title="Профиль" Height="550" Width="800" Icon="/Resources/icon.ico">
+        Title="Профиль" Height="550" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
