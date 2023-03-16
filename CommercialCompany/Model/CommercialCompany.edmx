@@ -1,0 +1,490 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище CommercialCompanyModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="clients">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="surname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="patronimyc" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="city" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="street" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="house" Type="int" Nullable="false" />
+          <Property Name="office" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="colors">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="contracts">
+          <Key>
+            <PropertyRef Name="contract_number" />
+          </Key>
+          <Property Name="contract_number" Type="int" Nullable="false" />
+          <Property Name="client_id" Type="int" Nullable="false" />
+          <Property Name="model_id" Type="int" Nullable="false" />
+          <Property Name="purchase_date" Type="date" Nullable="false" />
+          <Property Name="status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="dealer_model">
+          <Key>
+            <PropertyRef Name="dealer_id" />
+            <PropertyRef Name="model_id" />
+          </Key>
+          <Property Name="dealer_id" Type="int" Nullable="false" />
+          <Property Name="model_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="dealers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="url" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="models">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="color_id" Type="int" Nullable="false" />
+          <Property Name="upholstery_id" Type="int" Nullable="false" />
+          <Property Name="horsepower" Type="int" Nullable="false" />
+          <Property Name="doors_number" Type="int" Nullable="false" />
+          <Property Name="transmission" Type="bit" Nullable="false" />
+          <Property Name="release_year" Type="int" Nullable="false" />
+          <Property Name="model_price" Type="float" Nullable="false" />
+          <Property Name="preparation_price" Type="float" Nullable="false" />
+          <Property Name="transport_price" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="upholstery">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="surname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="patronymic" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__contracts__clien__48CFD27E">
+          <End Role="clients" Type="Self.clients" Multiplicity="1" />
+          <End Role="contracts" Type="Self.contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clients">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="contracts">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__contracts__model__49C3F6B7">
+          <End Role="models" Type="Self.models" Multiplicity="1" />
+          <End Role="contracts" Type="Self.contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="models">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="contracts">
+              <PropertyRef Name="model_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dealer_mo__deale__4CA06362">
+          <End Role="dealers" Type="Self.dealers" Multiplicity="1" />
+          <End Role="dealer_model" Type="Self.dealer_model" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dealers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="dealer_model">
+              <PropertyRef Name="dealer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dealer_mo__model__4D94879B">
+          <End Role="models" Type="Self.models" Multiplicity="1" />
+          <End Role="dealer_model" Type="Self.dealer_model" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="models">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="dealer_model">
+              <PropertyRef Name="model_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__models__color_id__440B1D61">
+          <End Role="colors" Type="Self.colors" Multiplicity="1" />
+          <End Role="models" Type="Self.models" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="colors">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="models">
+              <PropertyRef Name="color_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__models__upholste__44FF419A">
+          <End Role="upholstery" Type="Self.upholstery" Multiplicity="1" />
+          <End Role="models" Type="Self.models" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="upholstery">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="models">
+              <PropertyRef Name="upholstery_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище CommercialCompanyModelContainer">
+          <EntitySet Name="clients" EntityType="Self.clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="colors" EntityType="Self.colors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="contracts" EntityType="Self.contracts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dealer_model" EntityType="Self.dealer_model" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dealers" EntityType="Self.dealers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="models" EntityType="Self.models" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="upholstery" EntityType="Self.upholstery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__contracts__clien__48CFD27E" Association="Self.FK__contracts__clien__48CFD27E">
+            <End Role="clients" EntitySet="clients" />
+            <End Role="contracts" EntitySet="contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__contracts__model__49C3F6B7" Association="Self.FK__contracts__model__49C3F6B7">
+            <End Role="models" EntitySet="models" />
+            <End Role="contracts" EntitySet="contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dealer_mo__deale__4CA06362" Association="Self.FK__dealer_mo__deale__4CA06362">
+            <End Role="dealers" EntitySet="dealers" />
+            <End Role="dealer_model" EntitySet="dealer_model" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dealer_mo__model__4D94879B" Association="Self.FK__dealer_mo__model__4D94879B">
+            <End Role="models" EntitySet="models" />
+            <End Role="dealer_model" EntitySet="dealer_model" />
+          </AssociationSet>
+          <AssociationSet Name="FK__models__color_id__440B1D61" Association="Self.FK__models__color_id__440B1D61">
+            <End Role="colors" EntitySet="colors" />
+            <End Role="models" EntitySet="models" />
+          </AssociationSet>
+          <AssociationSet Name="FK__models__upholste__44FF419A" Association="Self.FK__models__upholste__44FF419A">
+            <End Role="upholstery" EntitySet="upholstery" />
+            <End Role="models" EntitySet="models" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CommercialCompanyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="clients">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="patronimyc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="street" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="house" Type="Int32" Nullable="false" />
+          <Property Name="office" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="contracts" Relationship="Self.FK__contracts__clien__48CFD27E" FromRole="clients" ToRole="contracts" />
+        </EntityType>
+        <EntityType Name="colors">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="models" Relationship="Self.FK__models__color_id__440B1D61" FromRole="colors" ToRole="models" />
+        </EntityType>
+        <EntityType Name="contracts">
+          <Key>
+            <PropertyRef Name="contract_number" />
+          </Key>
+          <Property Name="contract_number" Type="Int32" Nullable="false" />
+          <Property Name="client_id" Type="Int32" Nullable="false" />
+          <Property Name="model_id" Type="Int32" Nullable="false" />
+          <Property Name="purchase_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="clients" Relationship="Self.FK__contracts__clien__48CFD27E" FromRole="contracts" ToRole="clients" />
+          <NavigationProperty Name="models" Relationship="Self.FK__contracts__model__49C3F6B7" FromRole="contracts" ToRole="models" />
+        </EntityType>
+        <EntityType Name="dealers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="models" Relationship="Self.dealer_model" FromRole="dealers" ToRole="models" />
+        </EntityType>
+        <EntityType Name="models">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="color_id" Type="Int32" Nullable="false" />
+          <Property Name="upholstery_id" Type="Int32" Nullable="false" />
+          <Property Name="horsepower" Type="Int32" Nullable="false" />
+          <Property Name="doors_number" Type="Int32" Nullable="false" />
+          <Property Name="transmission" Type="Boolean" Nullable="false" />
+          <Property Name="release_year" Type="Int32" Nullable="false" />
+          <Property Name="model_price" Type="Double" Nullable="false" />
+          <Property Name="preparation_price" Type="Double" Nullable="false" />
+          <Property Name="transport_price" Type="Double" Nullable="false" />
+          <NavigationProperty Name="colors" Relationship="Self.FK__models__color_id__440B1D61" FromRole="models" ToRole="colors" />
+          <NavigationProperty Name="contracts" Relationship="Self.FK__contracts__model__49C3F6B7" FromRole="models" ToRole="contracts" />
+          <NavigationProperty Name="upholstery" Relationship="Self.FK__models__upholste__44FF419A" FromRole="models" ToRole="upholstery" />
+          <NavigationProperty Name="dealers" Relationship="Self.dealer_model" FromRole="models" ToRole="dealers" />
+        </EntityType>
+        <EntityType Name="upholstery">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="models" Relationship="Self.FK__models__upholste__44FF419A" FromRole="upholstery" ToRole="models" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__contracts__clien__48CFD27E">
+          <End Role="clients" Type="Self.clients" Multiplicity="1" />
+          <End Role="contracts" Type="Self.contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clients">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="contracts">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__models__color_id__440B1D61">
+          <End Role="colors" Type="Self.colors" Multiplicity="1" />
+          <End Role="models" Type="Self.models" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="colors">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="models">
+              <PropertyRef Name="color_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__contracts__model__49C3F6B7">
+          <End Role="models" Type="Self.models" Multiplicity="1" />
+          <End Role="contracts" Type="Self.contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="models">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="contracts">
+              <PropertyRef Name="model_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__models__upholste__44FF419A">
+          <End Role="upholstery" Type="Self.upholstery" Multiplicity="1" />
+          <End Role="models" Type="Self.models" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="upholstery">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="models">
+              <PropertyRef Name="upholstery_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="dealer_model">
+          <End Role="dealers" Type="Self.dealers" Multiplicity="*" />
+          <End Role="models" Type="Self.models" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="CommercialCompanyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="clients" EntityType="Self.clients" />
+          <EntitySet Name="colors" EntityType="Self.colors" />
+          <EntitySet Name="contracts" EntityType="Self.contracts" />
+          <EntitySet Name="dealers" EntityType="Self.dealers" />
+          <EntitySet Name="models" EntityType="Self.models" />
+          <EntitySet Name="upholstery" EntityType="Self.upholstery" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <AssociationSet Name="FK__contracts__clien__48CFD27E" Association="Self.FK__contracts__clien__48CFD27E">
+            <End Role="clients" EntitySet="clients" />
+            <End Role="contracts" EntitySet="contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__models__color_id__440B1D61" Association="Self.FK__models__color_id__440B1D61">
+            <End Role="colors" EntitySet="colors" />
+            <End Role="models" EntitySet="models" />
+          </AssociationSet>
+          <AssociationSet Name="FK__contracts__model__49C3F6B7" Association="Self.FK__contracts__model__49C3F6B7">
+            <End Role="models" EntitySet="models" />
+            <End Role="contracts" EntitySet="contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__models__upholste__44FF419A" Association="Self.FK__models__upholste__44FF419A">
+            <End Role="upholstery" EntitySet="upholstery" />
+            <End Role="models" EntitySet="models" />
+          </AssociationSet>
+          <AssociationSet Name="dealer_model" Association="Self.dealer_model">
+            <End Role="dealers" EntitySet="dealers" />
+            <End Role="models" EntitySet="models" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище CommercialCompanyModelContainer" CdmEntityContainer="CommercialCompanyEntities">
+          <EntitySetMapping Name="clients">
+            <EntityTypeMapping TypeName="CommercialCompanyModel.clients">
+              <MappingFragment StoreEntitySet="clients">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="patronimyc" ColumnName="patronimyc" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="house" ColumnName="house" />
+                <ScalarProperty Name="office" ColumnName="office" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="colors">
+            <EntityTypeMapping TypeName="CommercialCompanyModel.colors">
+              <MappingFragment StoreEntitySet="colors">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contracts">
+            <EntityTypeMapping TypeName="CommercialCompanyModel.contracts">
+              <MappingFragment StoreEntitySet="contracts">
+                <ScalarProperty Name="contract_number" ColumnName="contract_number" />
+                <ScalarProperty Name="client_id" ColumnName="client_id" />
+                <ScalarProperty Name="model_id" ColumnName="model_id" />
+                <ScalarProperty Name="purchase_date" ColumnName="purchase_date" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dealers">
+            <EntityTypeMapping TypeName="CommercialCompanyModel.dealers">
+              <MappingFragment StoreEntitySet="dealers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="url" ColumnName="url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="models">
+            <EntityTypeMapping TypeName="CommercialCompanyModel.models">
+              <MappingFragment StoreEntitySet="models">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="color_id" ColumnName="color_id" />
+                <ScalarProperty Name="upholstery_id" ColumnName="upholstery_id" />
+                <ScalarProperty Name="horsepower" ColumnName="horsepower" />
+                <ScalarProperty Name="doors_number" ColumnName="doors_number" />
+                <ScalarProperty Name="transmission" ColumnName="transmission" />
+                <ScalarProperty Name="release_year" ColumnName="release_year" />
+                <ScalarProperty Name="model_price" ColumnName="model_price" />
+                <ScalarProperty Name="preparation_price" ColumnName="preparation_price" />
+                <ScalarProperty Name="transport_price" ColumnName="transport_price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="upholstery">
+            <EntityTypeMapping TypeName="CommercialCompanyModel.upholstery">
+              <MappingFragment StoreEntitySet="upholstery">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="CommercialCompanyModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="dealer_model" TypeName="CommercialCompanyModel.dealer_model" StoreEntitySet="dealer_model">
+            <EndProperty Name="dealers">
+              <ScalarProperty Name="id" ColumnName="dealer_id" />
+            </EndProperty>
+            <EndProperty Name="models">
+              <ScalarProperty Name="id" ColumnName="model_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,34 @@
+﻿<Window x:Class="CommercialCompany.WPF.CreateUpdateModels"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CommercialCompany.WPF"
+        mc:Ignorable="d"
+        Title="Модель" Height="670" Width="400">
+    <Grid>
+        <TextBox Name="textBox_id" HorizontalAlignment="Left" Height="24" Margin="24,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="335" IsEnabled="False"/>
+        <TextBox Name="textBox_name" HorizontalAlignment="Left" Height="24" Margin="24,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="335"/>
+        <TextBox Name="textBox_color_id" HorizontalAlignment="Left" Height="24" Margin="24,150,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="335"/>
+        <TextBox Name="textBox_upholstery_id" HorizontalAlignment="Left" Height="24" Margin="24,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="335"/>
+        <TextBox Name="textBox_horsepower" HorizontalAlignment="Left" Height="24" Margin="24,252,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="335"/>
+        <TextBox Name="textBox_doors_number" HorizontalAlignment="Left" Height="24" Margin="24,302,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="335"/>
+        <CheckBox Name="checkBox_transmission" HorizontalAlignment="Left" Margin="32,356,0,0" IsChecked="False" Width="16" Visibility="Visible"/>
+        <TextBox Name="textBox_release_year" HorizontalAlignment="Left" Height="24" Margin="24,400,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="335"/>
+        <TextBox Name="textBox_model_price" HorizontalAlignment="Left" Height="24" Margin="24,450,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="335"/>
+        <TextBox Name="textBox_preparation_price" HorizontalAlignment="Left" Height="24" Margin="24,502,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="335"/>
+        <TextBox Name="textBox_transport_price" HorizontalAlignment="Left" Height="24" Margin="24,550,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="335"/>
+        <Label Content="Код" HorizontalAlignment="Left" Margin="24,25,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Наименование" HorizontalAlignment="Left" Margin="24,75,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Код цвета" HorizontalAlignment="Left" Margin="24,125,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Код обивки" HorizontalAlignment="Left" Margin="24,175,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Мощность(в лошадиных силах)" HorizontalAlignment="Left" Margin="24,227,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Количество дверей" HorizontalAlignment="Left" Margin="24,277,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Коробка передач(Автоматическая - да, механика - нет)" HorizontalAlignment="Left" Margin="24,325,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Год выпуска" HorizontalAlignment="Left" Margin="24,375,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Цена модели(руб)" HorizontalAlignment="Left" Margin="24,425,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Цена приготовлений(руб)" HorizontalAlignment="Left" Margin="24,475,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Цена транспортировки(руб)" HorizontalAlignment="Left" Margin="24,525,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Button Name="btnAdd"  Content="Сохранить" HorizontalAlignment="Left" Margin="24,590,0,0" VerticalAlignment="Top" Width="161" Height="27"/>
+    </Grid>
+</Window>

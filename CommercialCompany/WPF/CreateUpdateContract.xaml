@@ -1,0 +1,22 @@
+﻿<Window x:Class="CommercialCompany.WPF.CreateUpdateContract"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CommercialCompany.WPF"
+        mc:Ignorable="d"
+        Title="Контракт" Height="380" Width="400">
+    <Grid>
+        <TextBox Name="textBox_contract_number" HorizontalAlignment="Left" Height="24" Margin="24,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="335"/>
+        <TextBox Name="textBox_client_id" HorizontalAlignment="Left" Height="24" Margin="24,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="335"/>
+        <TextBox Name="textBox_model_id" HorizontalAlignment="Left" Height="24" Margin="24,150,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="335"/>
+        <TextBox Name="textBox_purchase_date" HorizontalAlignment="Left" Height="24" Margin="24,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="335"/>
+        <CheckBox Name="checkBox_status" HorizontalAlignment="Left" Margin="32,253,0,0"/>
+        <Label Content="Номер договора" HorizontalAlignment="Left" Margin="24,25,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Код клиента" HorizontalAlignment="Left" Margin="24,75,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Код модели" HorizontalAlignment="Left" Margin="24,125,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Дата покупки(ГГГГ-ММ-ДД)" HorizontalAlignment="Left" Margin="24,175,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Статус" HorizontalAlignment="Left" Margin="24,227,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Button Name="btnAdd"  Content="Сохранить" HorizontalAlignment="Left" Margin="24,300,0,0" VerticalAlignment="Top" Width="161" Height="27"/>
+    </Grid>
+</Window>

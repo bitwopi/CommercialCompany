@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CommercialCompanyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="clients">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="patronimyc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="street" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="house" Type="Int32" Nullable="false" />
+    <Property Name="office" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="contracts" Relationship="Self.FK__contracts__clien__48CFD27E" FromRole="clients" ToRole="contracts" />
+  </EntityType>
+  <EntityType Name="colors">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="models" Relationship="Self.FK__models__color_id__440B1D61" FromRole="colors" ToRole="models" />
+  </EntityType>
+  <EntityType Name="contracts">
+    <Key>
+      <PropertyRef Name="contract_number" />
+    </Key>
+    <Property Name="contract_number" Type="Int32" Nullable="false" />
+    <Property Name="client_id" Type="Int32" Nullable="false" />
+    <Property Name="model_id" Type="Int32" Nullable="false" />
+    <Property Name="purchase_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="clients" Relationship="Self.FK__contracts__clien__48CFD27E" FromRole="contracts" ToRole="clients" />
+    <NavigationProperty Name="models" Relationship="Self.FK__contracts__model__49C3F6B7" FromRole="contracts" ToRole="models" />
+  </EntityType>
+  <EntityType Name="dealers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="models" Relationship="Self.dealer_model" FromRole="dealers" ToRole="models" />
+  </EntityType>
+  <EntityType Name="models">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="color_id" Type="Int32" Nullable="false" />
+    <Property Name="upholstery_id" Type="Int32" Nullable="false" />
+    <Property Name="horsepower" Type="Int32" Nullable="false" />
+    <Property Name="doors_number" Type="Int32" Nullable="false" />
+    <Property Name="transmission" Type="Boolean" Nullable="false" />
+    <Property Name="release_year" Type="Int32" Nullable="false" />
+    <Property Name="model_price" Type="Double" Nullable="false" />
+    <Property Name="preparation_price" Type="Double" Nullable="false" />
+    <Property Name="transport_price" Type="Double" Nullable="false" />
+    <NavigationProperty Name="colors" Relationship="Self.FK__models__color_id__440B1D61" FromRole="models" ToRole="colors" />
+    <NavigationProperty Name="contracts" Relationship="Self.FK__contracts__model__49C3F6B7" FromRole="models" ToRole="contracts" />
+    <NavigationProperty Name="upholstery" Relationship="Self.FK__models__upholste__44FF419A" FromRole="models" ToRole="upholstery" />
+    <NavigationProperty Name="dealers" Relationship="Self.dealer_model" FromRole="models" ToRole="dealers" />
+  </EntityType>
+  <EntityType Name="upholstery">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="models" Relationship="Self.FK__models__upholste__44FF419A" FromRole="upholstery" ToRole="models" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__contracts__clien__48CFD27E">
+    <End Role="clients" Type="Self.clients" Multiplicity="1" />
+    <End Role="contracts" Type="Self.contracts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clients">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="contracts">
+        <PropertyRef Name="client_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__models__color_id__440B1D61">
+    <End Role="colors" Type="Self.colors" Multiplicity="1" />
+    <End Role="models" Type="Self.models" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="colors">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="models">
+        <PropertyRef Name="color_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__contracts__model__49C3F6B7">
+    <End Role="models" Type="Self.models" Multiplicity="1" />
+    <End Role="contracts" Type="Self.contracts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="models">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="contracts">
+        <PropertyRef Name="model_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__models__upholste__44FF419A">
+    <End Role="upholstery" Type="Self.upholstery" Multiplicity="1" />
+    <End Role="models" Type="Self.models" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="upholstery">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="models">
+        <PropertyRef Name="upholstery_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="dealer_model">
+    <End Role="dealers" Type="Self.dealers" Multiplicity="*" />
+    <End Role="models" Type="Self.models" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="CommercialCompanyEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="clients" EntityType="Self.clients" />
+    <EntitySet Name="colors" EntityType="Self.colors" />
+    <EntitySet Name="contracts" EntityType="Self.contracts" />
+    <EntitySet Name="dealers" EntityType="Self.dealers" />
+    <EntitySet Name="models" EntityType="Self.models" />
+    <EntitySet Name="upholstery" EntityType="Self.upholstery" />
+    <EntitySet Name="users" EntityType="Self.users" />
+    <AssociationSet Name="FK__contracts__clien__48CFD27E" Association="Self.FK__contracts__clien__48CFD27E">
+      <End Role="clients" EntitySet="clients" />
+      <End Role="contracts" EntitySet="contracts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__models__color_id__440B1D61" Association="Self.FK__models__color_id__440B1D61">
+      <End Role="colors" EntitySet="colors" />
+      <End Role="models" EntitySet="models" />
+    </AssociationSet>
+    <AssociationSet Name="FK__contracts__model__49C3F6B7" Association="Self.FK__contracts__model__49C3F6B7">
+      <End Role="models" EntitySet="models" />
+      <End Role="contracts" EntitySet="contracts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__models__upholste__44FF419A" Association="Self.FK__models__upholste__44FF419A">
+      <End Role="upholstery" EntitySet="upholstery" />
+      <End Role="models" EntitySet="models" />
+    </AssociationSet>
+    <AssociationSet Name="dealer_model" Association="Self.dealer_model">
+      <End Role="dealers" EntitySet="dealers" />
+      <End Role="models" EntitySet="models" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

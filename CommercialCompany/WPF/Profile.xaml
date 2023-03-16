@@ -1,0 +1,44 @@
+﻿<Window x:Class="CommercialCompany.WPF.Profile"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CommercialCompany.WPF"
+        mc:Ignorable="d"
+        Title="Профиль" Height="550" Width="800" Icon="/Resources/icon.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="370"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Image Name="profilePhoto" Grid.Row="0" Margin="10,10,22,0" RenderTransformOrigin="-0.94,0.398"/>
+        <Label Name="profileType"  Content="TYPE" Grid.Column="1" Height="30" Width="100" Margin="102,45,410,67"/>
+        <Label Name="profileName" Content="NAME" Grid.Row="0" Grid.Column="1" Height="30" Margin="22,10,381,102"/>
+        <Button  Name="butBack" Content="Выход" Grid.Row="2" Margin="20,340,22,5" Click="butBack_Click" />
+        <Label Content="Имя:" HorizontalAlignment="Left" Margin="163,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" FontWeight="Bold"/>
+        <Label Content="Тип пользователя:" HorizontalAlignment="Left" Margin="163,45,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" FontWeight="Bold"/>
+
+        <DataGrid Name="dataGrid"  CanUserAddRows="False" ColumnWidth="*" HorizontalAlignment="Left" Height="330" Margin="20,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="749" Grid.ColumnSpan="2">
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseLeftButtonUp" Handler="DataGridRow_MouseUp"/>
+                </Style>
+            </DataGrid.ItemContainerStyle>
+        </DataGrid>
+
+        <Label Content="Таблица:" HorizontalAlignment="Left" Margin="163,106,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="119" FontWeight="Bold"/>
+        <ComboBox Name="tableComboBox" Grid.Column="1" HorizontalAlignment="Left" Margin="49,106,0,0" VerticalAlignment="Top" Width="127" Height="26" SelectionChanged="comboBoxListTab_SelectionChaged"/>
+        <Button Content="Добавить" Grid.Column="1" HorizontalAlignment="Left" Margin="202,106,0,0" VerticalAlignment="Top" Width="93" Height="26" Click="butAddNew_Click"/>
+        <Button Content="Удалить" Grid.Column="1" HorizontalAlignment="Left" Margin="398,106,0,0" VerticalAlignment="Top" Width="93" Height="26" Click="deleteButton_Click"/>
+        <Button Content="Обновить" Grid.Column="1" HorizontalAlignment="Left" Margin="496,106,0,0" VerticalAlignment="Top" Width="93" Height="26" Click="updateButton_Click"/>
+        <Button Content="Редактировать" Grid.Column="1" HorizontalAlignment="Left" Margin="300,106,0,0" VerticalAlignment="Top" Width="93" Height="26" Click="editButton_Click"/>
+        <TextBox x:Name="searchTextBox" Grid.Column="1" HorizontalAlignment="Left" Margin="363,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Height="20"/>
+        <Button x:Name="searchButton" Grid.Column="1" Content="Поиск" HorizontalAlignment="Left" Margin="538,10,0,0" VerticalAlignment="Top" Width="49" Click="searchButton_Click"/>
+    </Grid>
+</Window>

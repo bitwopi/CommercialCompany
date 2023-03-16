@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище CommercialCompanyModelContainer" CdmEntityContainer="CommercialCompanyEntities">
+    <EntitySetMapping Name="clients">
+      <EntityTypeMapping TypeName="CommercialCompanyModel.clients">
+        <MappingFragment StoreEntitySet="clients">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="patronimyc" ColumnName="patronimyc" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="street" ColumnName="street" />
+          <ScalarProperty Name="house" ColumnName="house" />
+          <ScalarProperty Name="office" ColumnName="office" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="colors">
+      <EntityTypeMapping TypeName="CommercialCompanyModel.colors">
+        <MappingFragment StoreEntitySet="colors">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contracts">
+      <EntityTypeMapping TypeName="CommercialCompanyModel.contracts">
+        <MappingFragment StoreEntitySet="contracts">
+          <ScalarProperty Name="contract_number" ColumnName="contract_number" />
+          <ScalarProperty Name="client_id" ColumnName="client_id" />
+          <ScalarProperty Name="model_id" ColumnName="model_id" />
+          <ScalarProperty Name="purchase_date" ColumnName="purchase_date" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dealers">
+      <EntityTypeMapping TypeName="CommercialCompanyModel.dealers">
+        <MappingFragment StoreEntitySet="dealers">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="url" ColumnName="url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="models">
+      <EntityTypeMapping TypeName="CommercialCompanyModel.models">
+        <MappingFragment StoreEntitySet="models">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="color_id" ColumnName="color_id" />
+          <ScalarProperty Name="upholstery_id" ColumnName="upholstery_id" />
+          <ScalarProperty Name="horsepower" ColumnName="horsepower" />
+          <ScalarProperty Name="doors_number" ColumnName="doors_number" />
+          <ScalarProperty Name="transmission" ColumnName="transmission" />
+          <ScalarProperty Name="release_year" ColumnName="release_year" />
+          <ScalarProperty Name="model_price" ColumnName="model_price" />
+          <ScalarProperty Name="preparation_price" ColumnName="preparation_price" />
+          <ScalarProperty Name="transport_price" ColumnName="transport_price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="upholstery">
+      <EntityTypeMapping TypeName="CommercialCompanyModel.upholstery">
+        <MappingFragment StoreEntitySet="upholstery">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="CommercialCompanyModel.users">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="type" ColumnName="type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="dealer_model" TypeName="CommercialCompanyModel.dealer_model" StoreEntitySet="dealer_model">
+      <EndProperty Name="dealers">
+        <ScalarProperty Name="id" ColumnName="dealer_id" />
+      </EndProperty>
+      <EndProperty Name="models">
+        <ScalarProperty Name="id" ColumnName="model_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

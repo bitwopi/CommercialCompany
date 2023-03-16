@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище commercial_companyModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="client_model">
+    <Key>
+      <PropertyRef Name="client_id" />
+      <PropertyRef Name="model_id" />
+    </Key>
+    <Property Name="client_id" Type="int" Nullable="false" />
+    <Property Name="model_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="clients">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="surname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="patronimyc" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="purchase_date" Type="date" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="city" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="street" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="house" Type="int" Nullable="false" />
+    <Property Name="office" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="colors">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="dealer_model">
+    <Key>
+      <PropertyRef Name="dealer_id" />
+      <PropertyRef Name="model_id" />
+    </Key>
+    <Property Name="dealer_id" Type="int" Nullable="false" />
+    <Property Name="model_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="dealers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="url" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="models">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="color_id" Type="int" Nullable="false" />
+    <Property Name="upholstery_id" Type="int" Nullable="false" />
+    <Property Name="horsepower" Type="int" Nullable="false" />
+    <Property Name="doors_number" Type="int" Nullable="false" />
+    <Property Name="transmission" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="price_lists">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="year" Type="date" Nullable="false" />
+    <Property Name="model_price" Type="float" Nullable="false" />
+    <Property Name="preparation_price" Type="float" Nullable="false" />
+    <Property Name="transport_price" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="upholstery">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="surname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="patronymic" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="type" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__client_mo__clien__4BAC3F29">
+    <End Role="clients" Type="Self.clients" Multiplicity="1" />
+    <End Role="client_model" Type="Self.client_model" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clients">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="client_model">
+        <PropertyRef Name="client_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__client_mo__model__4CA06362">
+    <End Role="models" Type="Self.models" Multiplicity="1" />
+    <End Role="client_model" Type="Self.client_model" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="models">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="client_model">
+        <PropertyRef Name="model_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__dealer_mo__deale__4F7CD00D">
+    <End Role="dealers" Type="Self.dealers" Multiplicity="1" />
+    <End Role="dealer_model" Type="Self.dealer_model" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dealers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="dealer_model">
+        <PropertyRef Name="dealer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__dealer_mo__model__5070F446">
+    <End Role="models" Type="Self.models" Multiplicity="1" />
+    <End Role="dealer_model" Type="Self.dealer_model" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="models">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="dealer_model">
+        <PropertyRef Name="model_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__models__color_id__440B1D61">
+    <End Role="colors" Type="Self.colors" Multiplicity="1" />
+    <End Role="models" Type="Self.models" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="colors">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="models">
+        <PropertyRef Name="color_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__models__upholste__44FF419A">
+    <End Role="upholstery" Type="Self.upholstery" Multiplicity="1" />
+    <End Role="models" Type="Self.models" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="upholstery">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="models">
+        <PropertyRef Name="upholstery_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__price_lists__id__48CFD27E">
+    <End Role="models" Type="Self.models" Multiplicity="1" />
+    <End Role="price_lists" Type="Self.price_lists" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="models">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="price_lists">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="Хранилище commercial_companyModelContainer">
+    <EntitySet Name="client_model" EntityType="Self.client_model" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="clients" EntityType="Self.clients" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="colors" EntityType="Self.colors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="dealer_model" EntityType="Self.dealer_model" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="dealers" EntityType="Self.dealers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="models" EntityType="Self.models" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="price_lists" EntityType="Self.price_lists" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="upholstery" EntityType="Self.upholstery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__client_mo__clien__4BAC3F29" Association="Self.FK__client_mo__clien__4BAC3F29">
+      <End Role="clients" EntitySet="clients" />
+      <End Role="client_model" EntitySet="client_model" />
+    </AssociationSet>
+    <AssociationSet Name="FK__client_mo__model__4CA06362" Association="Self.FK__client_mo__model__4CA06362">
+      <End Role="models" EntitySet="models" />
+      <End Role="client_model" EntitySet="client_model" />
+    </AssociationSet>
+    <AssociationSet Name="FK__dealer_mo__deale__4F7CD00D" Association="Self.FK__dealer_mo__deale__4F7CD00D">
+      <End Role="dealers" EntitySet="dealers" />
+      <End Role="dealer_model" EntitySet="dealer_model" />
+    </AssociationSet>
+    <AssociationSet Name="FK__dealer_mo__model__5070F446" Association="Self.FK__dealer_mo__model__5070F446">
+      <End Role="models" EntitySet="models" />
+      <End Role="dealer_model" EntitySet="dealer_model" />
+    </AssociationSet>
+    <AssociationSet Name="FK__models__color_id__440B1D61" Association="Self.FK__models__color_id__440B1D61">
+      <End Role="colors" EntitySet="colors" />
+      <End Role="models" EntitySet="models" />
+    </AssociationSet>
+    <AssociationSet Name="FK__models__upholste__44FF419A" Association="Self.FK__models__upholste__44FF419A">
+      <End Role="upholstery" EntitySet="upholstery" />
+      <End Role="models" EntitySet="models" />
+    </AssociationSet>
+    <AssociationSet Name="FK__price_lists__id__48CFD27E" Association="Self.FK__price_lists__id__48CFD27E">
+      <End Role="models" EntitySet="models" />
+      <End Role="price_lists" EntitySet="price_lists" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
